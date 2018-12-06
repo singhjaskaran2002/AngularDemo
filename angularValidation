@@ -1,0 +1,28 @@
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+
+public form: FormGroup;
+
+ constructor(private formBuilder: FormBuilder)
+{
+  this.form = this.formBuilder.group({
+            firstName: ['', Validators.required],
+            userName: ['', Validators.required]
+)}
+}
+
+
+
+  <form [formGroup]="form" (ngSubmit)="finalSubmit()" autocomplete="off">
+
+
+                        <div class="form-group col-md-6">
+                            <label for="firstName">Name</label>
+                            <span [ngClass]="{'text-danger':form.controls['firstName'].hasError('required')  && form.controls['firstName'].touched}">*</span>
+                            <input placeholder="Enter name" type="text" id="firstName" class="form-control required"
+                                   formControlName="firstName" [(ngModel)]="myModel.firstName" trim>
+                            <div class="text-danger"
+                                 *ngIf="form.controls['firstName'].hasError('required') && form.controls['firstName'].touched">
+                                Please enter name.
+                            </div>
+                        </div>
+
