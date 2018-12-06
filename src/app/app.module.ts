@@ -9,6 +9,8 @@ import { ModalComponent } from './modal/modal.component';
 import { PatientComponent } from './patient/patient.component';
 import { PatientService } from './patient/patient.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, FormBuilder } from "@angular/forms";
+
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     ModalModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [PatientService],
   bootstrap: [AppComponent]

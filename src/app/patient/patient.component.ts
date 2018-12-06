@@ -27,7 +27,10 @@ export class PatientComponent implements OnInit {
 	deleteUser(id) {
 		console.log(id)
 		this.patientService.deleteUserData(id).subscribe(data=>{
-			console.log(data);
+			// console.log(data.status);
+			if(data.status) {
+				this.getUsers();
+			}
 		});
 	}
 
@@ -36,11 +39,15 @@ export class PatientComponent implements OnInit {
 		this.modalRef = this.modalService.show(template);
 	}
 
-	ngOnInit() {
-		console.log("in hook");
+	getUsers() {
 		this.patientService.getUserData().subscribe(res => {
 			console.log(res.users)
 			this.data = res.users;
 		});
+	}
+
+	ngOnInit() {
+		console.log("in hook");
+		this.getUsers();
 	}
 }

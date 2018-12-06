@@ -1,17 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': 'my-auth-token'
-  })
-};
-
 @Injectable({
   providedIn: 'root'
 })
-
 export class PatientService {
 
   constructor(private http: HttpClient) { }
@@ -22,6 +14,10 @@ export class PatientService {
   }
 
   deleteUserData(id) {
-    return this.http.post('http://localhost:8080/deleteUser', {id:id});
+    return this.http.delete<any>('http://localhost:8080/deleteUser/'+id);
+  }
+
+  addUserData() {
+    return this.http.post<any>('http://localhost:8080/listUsers')
   }
 }
