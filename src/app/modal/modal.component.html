@@ -4,34 +4,38 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
+
 <div class="modal-body">
-  <form>
+  <form autocomplete="off" [formGroup]="form" (ngSubmit)="addUser()">
     <div class="form-group">
       <label for="name">Name</label>
-      <input id="name" name="name" class="form-control" type="text" placeholder="Enter name">
+      <input id="name" class="form-control" type="text" placeholder="Enter name" [(ngModel)]="obj.name" formControlName="name">
+      <div *ngIf="form.controls['name'].hasError('required') && form.controls['name'].touched" class="text-danger">Please enter name</div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" *ngIf="!isEdit">
       <label for="email">Email</label>
-      <input id="email" name="email" class="form-control" type="email" placeholder="Enter email">
+      <input id="email" class="form-control" type="email" placeholder="Enter email" [(ngModel)]="obj.email" formControlName="email">
+      <div *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched" class="text-danger">Please enter email</div>
+      <div *ngIf="form.controls['email'].hasError('pattern') && form.controls['email'].touched" class="text-danger">Please enter valid email</div>
     </div>
 
-    <div class="form-group">
-      <label for="name">Password</label>
-      <input id="pwd" name="pwd" class="form-control" type="password" placeholder="Enter password">
+    <div class="form-group" *ngIf="!isEdit">
+      <label for="pwd">Password</label>
+      <input id="pwd" class="form-control" type="password" placeholder="Enter password" [(ngModel)]="obj.password" formControlName="password">
+      <div *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched" class="text-danger">Please enter password</div>
     </div>
 
     <div class="form-group">
       <label for="city">City</label>
-      <input id="city" name="city" class="form-control" type="text" placeholder="Enter city">
+      <input id="city" class="form-control" type="text" placeholder="Enter city" [(ngModel)]="obj.city" formControlName="city">
+      <div *ngIf="form.controls['city'].hasError('required')  && form.controls['city'].touched" class="text-danger">Please enter city</div>
     </div>
     <br>
-    <p style="text-align:center;" class="form-group">
-      <input *ngIf="!flag" type="button" class="btn btn-primary" value="Submit">
-      <input *ngIf="flag" type="button" class="btn btn-primary" value="Update">
-    </p>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" (click)="closeModal()"> Close </button>
+      <button type="submit" class="btn btn-primary"> Submit </button>
+    </div>
   </form>
-</div>
-<div class="modal-footer">
-  <button style="float: right;" class="btn btn-default" (click)="closeModal()"> Close </button>
 </div>

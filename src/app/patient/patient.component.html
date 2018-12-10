@@ -1,25 +1,23 @@
 <ng-template  #template>
-	<app-modal></app-modal>
+	<app-modal (callBack)="added()" [isEdit]="flag" [UpdatePass]="updatePass"></app-modal>
 </ng-template>
 
 <div style="padding:100px 200px;">
 <table class="table table-condensed">
 <thead style="background-color:aqua;">
-	<th>ID</th>
 	<th>Name</th>
 	<th>E-mail</th>
 	<th>City</th>
-	<th></th>
+	<th>Actions</th>
 </thead>
 <tbody>
 	<tr *ngFor="let user of data">
-		<td> {{ user.id }} </td>
 		<td> {{ user.name }} </td>
 		<td> {{ user.email }} </td>
 		<td> {{ user.city }} </td>
 		<td>
-			<button class="btn btn-warning" (click)="editClicked(template)"> Edit </button>	
-				&nbsp;&nbsp;
+			<button class="btn btn-warning" (click)="editClicked(template ,user)"> Edit </button> | 
+			<button class="btn btn-info" (click)="updatePassword(template, user)"> Update Password </button> | 
 			<button class="btn btn-danger" (click)="deleteUser(user.id)"> Delete </button>
 		</td>
 	</tr>

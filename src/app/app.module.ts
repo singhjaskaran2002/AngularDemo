@@ -9,7 +9,7 @@ import { ModalComponent } from './modal/modal.component';
 import { PatientComponent } from './patient/patient.component';
 import { PatientService } from './patient/patient.service';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, FormBuilder } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 
 @NgModule({

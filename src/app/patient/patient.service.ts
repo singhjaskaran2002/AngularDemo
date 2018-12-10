@@ -5,19 +5,18 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
   providedIn: 'root'
 })
 export class PatientService {
-
+  user: [];
   constructor(private http: HttpClient) { }
 
-  getUserData() {
-    console.log("getUserData called");
+  get() {
     return this.http.get<any>('http://localhost:8080/listUsers');
   }
 
-  deleteUserData(id) {
+  delete(id) {
     return this.http.delete<any>('http://localhost:8080/deleteUser/'+id);
   }
 
-  addUserData() {
-    return this.http.post<any>('http://localhost:8080/listUsers')
+  add(obj) {
+    return this.http.post<any>('http://localhost:8080/addUser',obj);
   }
 }
